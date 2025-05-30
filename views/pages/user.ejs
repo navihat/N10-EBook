@@ -1,0 +1,59 @@
+<%- include('../layout', {
+  title: 'N10-Ebook - Tài khoản',
+  content: `
+    <section class="content-area">
+      <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h2 class="content-title">Thông tin tài khoản</h2>
+
+      <div class="information">
+        <div class="info-container">
+          <div class="user-icon">
+            <i class="fa-solid fa-circle-user"></i>
+          </div>
+          <div class="user-details">
+            <p><strong>Họ và tên:</strong> Nguyễn Văn C</p>
+            <p><strong>Ngày sinh:</strong> 1/2/3</p>
+            <p><strong>Số điện thoại:</strong> 098xxxxxxxx</p>
+            <p><strong>Email:</strong> nguyenvanc@gmail.com</p>
+            <p><strong>Địa chỉ:</strong> Hà Nội</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn">Chỉnh sửa thông tin</button>
+        <button onclick="window.location.href='/'" class="action-btn">Đăng xuất</button>
+      </div>
+    </section>
+
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-sidebar i');
+        sidebar.classList.toggle('collapsed');
+        toggleBtn.classList.toggle('fa-angle-right');
+        toggleBtn.classList.toggle('fa-angle-left');
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".sidebar-button");
+        buttons.forEach(button => {
+          const href = button.getAttribute("href");
+          if (href && window.location.pathname.includes(href)) {
+            button.classList.add("active");
+          }
+        });
+      });
+
+      function goBack() {
+        if (document.referrer) {
+          window.history.back();
+        } else {
+          window.location.href = "home.html";
+        }
+      }
+    </script>
+  `
+}) %>

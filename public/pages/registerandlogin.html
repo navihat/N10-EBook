@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>N1O-Ebook - Đăng nhập và đăng ký</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Asap", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 1000px;
+      height: 540px;
+      background: white;
+      border-radius: 24px;
+      display: flex;
+      padding: 40px 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left, .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .left img {
+      width: 640px;
+      height: auto;
+      margin: -5px 0px 40px -80px;
+    }
+
+    .left p {
+      font-size: 25px;
+      font-style: italic;
+      color: #333;
+      max-width: 350px;
+      line-height: 1.5;
+      margin: -40px 0px 50px -90px;
+    }
+
+    .right img {
+      width: 820px;
+      height: auto;
+      margin: 300px 0px 0px -280px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 50px;
+      margin: 0px 0px 400px -280px;
+    }
+
+    .buttons button {
+      background-color: #005cd6;
+      color: white;
+      padding: 12px 28px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      width: 160px;
+      height: 60px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #003c9e;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <img src="logo.png" alt="Logo sách" />
+      <p>Chào mừng bạn đến khám phá khu văn học đa dạng cùng chúng tôi!</p>
+    </div>
+    <div class="right">
+      <img src="Minhhoa.png" alt="Hình minh họa" />
+      <div class="buttons">
+        <button onclick="window.location.href='register.html'">Đăng ký</button>
+        <button onclick="window.location.href='login.html'">Đăng nhập</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

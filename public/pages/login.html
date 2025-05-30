@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>N1O-Ebook - Đăng nhập</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Asap", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 1000px;
+      height: 540px;
+      background: white;
+      border-radius: 24px;
+      display: flex;
+      padding: 40px 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left, .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .left img {
+      width: 640px;
+      height: auto;
+      margin: -5px 0px 40px -80px;
+    }
+
+    .left p {
+      font-size: 25px;
+      font-style: italic;
+      color: #333;
+      max-width: 350px;
+      line-height: 1.5;
+      margin: -40px 0px 50px -90px;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 360px;
+      padding: 30px 30px 80px;
+      margin: 0px 0px 0px -90px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    } 
+
+    .login-box .back {
+      display: flex;
+      align-items: center;
+      color: #005cd6;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .login-box .back span {
+      margin-left: 6px;
+    }
+
+    .login-box input {
+      padding: 12px 16px;
+      border: none;
+      border-radius: 24px;
+      font-size: 16px;
+      outline: none;
+      color: #333;
+    }
+
+    .login-box input::placeholder {
+      color: #87a4d6;
+    }
+
+    .login-box button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 28px;
+      background-color: #005cd6;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background-color: #003c9e;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <img src="logo.png" alt="Logo" />
+      <p>Chào mừng bạn đến khám phá khu văn học đa dạng cùng chúng tôi!</p>
+    </div>
+    <div class="right">
+      <div class="login-box">
+        <div class="back" onclick="window.location.href='registerandlogin.html'">&#8592;<span>Quay lại</span></div>
+        <input type="text" placeholder="Tên đăng nhập" />
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Mật khẩu" />
+        <button>Đăng nhập</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

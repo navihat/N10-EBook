@@ -1,0 +1,60 @@
+<%- include('../layout', {
+  title: 'N10-Ebook - Chi tiết sách', 
+  content: `
+<section class="content-area">
+  <button class="back-button" onclick="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+
+  <!-- Book detail -->
+  <section class="book-detail">
+    <img src="/images/Biasachmau.png" alt="Dưới bầu trời trắng" class="book-image">
+    <div class="book-info">
+      <h1 id="book-title">Tiêu đề sách</h1>
+      <p class="author"><strong id="book-author">Tên tác giả</strong></p>
+      <p><strong>Thể loại:</strong>
+        <span class="tag" id="genre-1"></span>
+        <span class="tag" id="genre-2"></span>
+        <span class="tag" id="genre-3"></span>
+      </p>
+      <div class="rating">
+        <strong>Đánh giá:</strong> <span id="book-rating">⭐⭐⭐⭐⭐</span>
+      </div>
+      <p id="book-summary"><strong>Tóm tắt:</strong> Nội dung tóm tắt...</p>
+
+      <div class="button-row">
+        <button onclick="window.location.href='/read'" class="read-button">Đọc sách</button>
+        <button><i class="fa-solid fa-heart"></i></button>
+        <button><i class="fa-solid fa-share"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comments -->
+  <section class="comments">
+    <h2><em>Bình luận & Đánh giá</em></h2>
+    <div class="comment-box" id="comment-list">
+      <!-- Các comment sẽ được render động tại đây -->
+    </div>
+    <input type="text" class="input-comment" placeholder="Bình luận ngay" id="new-comment">
+  </section>
+
+  <!-- Suggestions -->
+  <section class="suggestions">
+    <h2><em>Có thể bạn sẽ thích</em></h2>
+    <div class="suggestion-list" id="suggestion-list">
+      <!-- Các gợi ý sách sẽ được render động tại đây -->
+    </div>
+  </section>
+</section>
+
+<script>
+  function goBack() {
+    if (document.referrer) {
+      window.history.back();
+    } else {
+      window.location.href = "/home";
+    }
+  }
+</script>
+` }) %>

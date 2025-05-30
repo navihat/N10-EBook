@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <%- include ('partials/sidebar') %>
+    <main class="main-content">
+      <%- include ('partials/header') %>
+      <section class="content-area">
+      <%- content %>
+      </section>
+      <%- include('partials/footer') %>
+      <%- include('partials/scroll-to-top') %>
+    </main>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const toggleBtn = document.querySelector('.toggle-sidebar i');
+      sidebar.classList.toggle('collapsed');
+      toggleBtn.classList.toggle('fa-angle-right');
+      toggleBtn.classList.toggle('fa-angle-left');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll(".sidebar-button");
+      buttons.forEach(button => {
+        const href = button.getAttribute("href");
+        if (href && window.location.pathname.includes(href)) {
+          button.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

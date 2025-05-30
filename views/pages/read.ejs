@@ -1,0 +1,60 @@
+<%- include('../layout', {
+  title: 'N10-Ebook - Đọc sách',
+  content: `
+    <section class="content-area">
+      <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button class="fullscreen-btn">
+        <i class="fa fa-expand"></i>
+      </button>
+
+      <h1 class="chapter-title">Lời nói đầu</h1>
+      <div class="chapter-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy 
+          nibh euismod tincidunt ut lorem ipsum dolor sit amet consectetuer adipiscing
+          elit sed diam nonummy nibh euismod tincidunt ut. lorem ipsum dolor sit amet 
+          consectetuer adipiscing elit sed diam nonummy nibh euismod tincidunt ut. 
+          lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh 
+          euismod tincidunt ut. lorem ipsum dolor sit amet consectetuer adipiscing elit 
+          sed diam nonummy nibh euismod tincidunt ut. lorem ipsum dolor sit amet consectetuer 
+          adipiscing elit sed diam nonummy nibh euismod tincidunt ut. lorem ipsum dolor sit 
+          amet consectetuer adipiscing elit sed diam nonummy nibh euismod tincidunt ut. 
+          lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh 
+          euismod tincidunt ut. lorem ipsum dolor sit amet consectetuer adipiscing elit 
+          sed diam nonummy nibh euismod tincidunt ut...
+        </p>
+      </div>
+    </section>
+
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-sidebar i');
+        sidebar.classList.toggle('collapsed');
+        toggleBtn.classList.toggle('fa-angle-right');
+        toggleBtn.classList.toggle('fa-angle-left');
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".sidebar-button");
+
+        buttons.forEach(button => {
+          const href = button.getAttribute("href");
+          if (href && window.location.pathname.includes(href)) {
+            button.classList.add("active");
+          }
+        });
+      });
+
+      function goBack() {
+        if (document.referrer) {
+          window.history.back();
+        } else {
+          window.location.href = "home.html";
+        }
+      }
+    </script>
+  `
+}) %>
