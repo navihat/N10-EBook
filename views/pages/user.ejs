@@ -1,7 +1,7 @@
 <%- include('../layout', {
   title: 'N10-Ebook - Tài khoản',
   content: `
-    <section class="content-area">
+    <section>
       <button class="back-button" onclick="goBack()">
         <i class="fas fa-arrow-left"></i>
       </button>
@@ -36,16 +36,6 @@
         toggleBtn.classList.toggle('fa-angle-right');
         toggleBtn.classList.toggle('fa-angle-left');
       }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".sidebar-button");
-        buttons.forEach(button => {
-          const href = button.getAttribute("href");
-          if (href && window.location.pathname.includes(href)) {
-            button.classList.add("active");
-          }
-        });
-      });
 
       function goBack() {
         if (document.referrer) {

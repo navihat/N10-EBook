@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Footer mẫu</title>
-  <style>
+<style>
     body {
       margin: 0;
       padding: 0;
@@ -20,7 +14,7 @@
     }
 
     footer {
-      background: linear-gradient(to right, #dce9f9, #b9ccf0);
+      background: none;
       color: #005cd6;
       text-align: center;
       padding: 15px 10px;
@@ -36,18 +30,13 @@
     footer a:hover {
       text-decoration: underline;
     }
-  </style>
-</head>
-<body>
+</style>
 
-  <footer>
-    <p>&copy; <span id="year"></span> Bản quyền thuộc về <a href="#">N1O-Ebook</a></p>
-  </footer>
+<footer>
+  <p>&copy; <span id="year"></span> Bản quyền thuộc về <a href="#">N1O-Ebook</a></p>
+</footer>
 
-  <script>
-    // Tự động cập nhật năm hiện tại
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-</body>
-</html>
+<script>
+  // Tự động cập nhật năm hiện tại
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>

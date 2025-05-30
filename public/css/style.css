@@ -132,28 +132,27 @@
       left: 60px;
     }
 
-    /* Đảm bảo phần này không đẩy phần khác */
     .dropdown-wrapper {
       position: relative;
       width: 100%;
     }
 
-    /* Dropdown nổi lên dưới nút "Thể loại", không chiếm chỗ */
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 100%; /* Hiện phía dưới */
+      top: 98%; 
       left: 0;
-      z-index: 10;
       width: 100%;
       background-color: #ffffff;
       border-radius: 10px;
       padding: 10px 20px;
-      margin-top: 5px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-height: 250px;
+      overflow-y: auto;
+      z-index: 10;
     }
 
-    /* Hover để hiện dropdown */
+    /* Khi hover vào cả nút hoặc menu, menu vẫn mở */
     .dropdown-wrapper:hover .dropdown-content {
       display: flex;
       flex-direction: column;
@@ -258,6 +257,7 @@
       color: #005cd6;
       cursor: pointer;
       transition: transform 0.2s;
+      display: inline-block;
     }
 
     .user-icon:hover {
@@ -269,7 +269,7 @@
       display: none;
       position: absolute;
       right: 0;
-      top: 120%;
+      top: 98%;
       background-color: white;
       min-width: 150px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -278,6 +278,10 @@
       padding: 8px 0;
       font-size: 13px;
       flex-direction: column;
+    }
+
+    .user-dropdown-wrapper:hover .user-dropdown-content {
+      display: flex;
     }
 
     .user-dropdown-content a {
@@ -298,10 +302,6 @@
       background-color: #d1e0ff;
     }
 
-    .user-dropdown-wrapper:hover .user-dropdown-content {
-      display: flex;
-    }
-
     /* CONTENT */
 
     .content-title {
@@ -315,7 +315,7 @@
 
     .content-area {
       position: relative;
-      background: white;
+      background: rgb(255, 255, 255);
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       margin: 30px -40px 0px 40px;
@@ -330,6 +330,8 @@
       overflow-x: auto;
       outline: 2px solid #ffffff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-height: 623px;
+      overflow-y: auto;
     }
 
     .content-area::-webkit-scrollbar {
@@ -341,7 +343,7 @@
       border-radius: 10px;
     }
 
-    /* Nút quay lại trang home.html */
+    /* Nút quay lại TRANG TRƯỚC */
 
     .back-button {
       position: absolute;
@@ -371,7 +373,7 @@
 
     /* RIÊNG */
 
-    /* Trang home.html và favorites.html */
+    /* TRANG CHỦ và MỤC YÊU THÍCH */
 
     .book-grid {
       display: flex;
@@ -420,7 +422,7 @@
 
 
     
-    /* Trang content.html */
+    /* TRANG NỘI DUNG */
   
     .book-detail {
       display: flex;
@@ -641,7 +643,7 @@
     
 
 
-    /* Trang contact.html */
+    /* TRANG LIÊN HỆ */
     .intro {
       display: flex;
       justify-content: space-between;
@@ -663,6 +665,7 @@
     .form-box {
       background-color: #e6f0ff;
       border-radius: 20px;
+      margin-top: 20px;
       padding: 30px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
@@ -686,6 +689,7 @@
     .form-box button {
       background-color: #0066ff;
       color: white;
+      margin-top: -11px;
       padding: 12px 30px;
       border: none;
       border-radius: 30px;
@@ -698,7 +702,7 @@
     }
 
 
-    /* Trang user.html */
+    /* TRANG THÔNG TIN TÀI KHOẢN */
     .information {
       padding: 12px 0;
     }
@@ -751,7 +755,7 @@
     }
 
 
-    /* Trang read.html */
+    /* TRANG ĐỌC SÁCH */
 
     .chapter-title {
       font-size: 1.5rem;
@@ -788,5 +792,3 @@
       color: #ffffff;
       transform: scale(1.1);
     }
-
-    

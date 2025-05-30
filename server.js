@@ -9,6 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const hostname = process.env.HOSTNAME;
 
+// config req.body
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 // cấu hình template engine
 configViewEngine(app);
 
@@ -16,12 +20,12 @@ configViewEngine(app);
 app.use('/', webRoutes);
 
 // simple querry
-connection.query(
-  'SELECT category FROM ebook.books;',
-  function(err, results, fields) {
-    console.log(results)
-  }
-)
+// connection.query(
+//   'SELECT DISTINCT category FROM books;',
+//   function(err, results, fields) {
+//     console.log(results)
+//   }
+// )
 
 // Middleware để parse body form
 app.use(express.urlencoded({ extended: true }));

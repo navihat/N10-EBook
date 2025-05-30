@@ -1,7 +1,7 @@
 <%- include('../layout', {
   title: 'N10-Ebook - Chi tiết sách', 
   content: `
-<section class="content-area">
+<section>
   <button class="back-button" onclick="goBack()">
     <i class="fas fa-arrow-left"></i>
   </button>
@@ -49,6 +49,14 @@
 </section>
 
 <script>
+  function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.querySelector('.toggle-sidebar i');
+        sidebar.classList.toggle('collapsed');
+        toggleBtn.classList.toggle('fa-angle-right');
+        toggleBtn.classList.toggle('fa-angle-left');
+      }
+      
   function goBack() {
     if (document.referrer) {
       window.history.back();

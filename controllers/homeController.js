@@ -10,7 +10,11 @@ const getContact = (req, res) => {
 }
 
 const getLogin = (req, res) => {
-  res.render('pages/login'); // views/pages/login.ejs
+  res.render('pages/login', { backUrl: '/register' }); // views/pages/login.ejs
+}
+
+const getRegister = (req, res) => {
+  res.render('pages/register', { backUrl: '/register' }); // views/pages/register.ejs
 }
 
 const getRead = (req, res) => {
@@ -25,10 +29,16 @@ const getUser = (req, res) => {
   res.render('pages/user'); // views/pages/user
 }
 
-const getRegister = (req, res) => {
-  res.render('pages/register'); // views/pages/user
+const getContent = (req, res) => {
+  res.render('pages/content');
+}
+
+const postLogin = (req, res) => {
+  res.send("du ma may");
+  console.log(">>> check req.body", req.body);
 }
 
 module.exports = {
-    getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister
+    getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister, getContent,
+    postLogin,
 }

@@ -7,15 +7,49 @@
     <a href="/favorites" class="sidebar-button"><i class="fas fa-heart"></i><span>Mục yêu thích</span></a>
 
     <div class="dropdown-wrapper">
-      <a href="#" class="sidebar-button"><i class="fas fa-list"></i><span>Thể loại</span></a>
-      <div class="dropdown-content">
-        <span class="tag">Truyện ngắn</span>
-        <span class="tag">Lịch sử</span>
-        <span class="tag">Thiếu nhi</span>
-        <span class="tag">Khoa học</span>
-        <span class="tag">Tâm lý</span>
-      </div>
-    </div>
+  <div class="dropdown-toggle sidebar-button">
+    <i class="fas fa-list"></i><span>Thể loại</span>
+  </div>
+  <div class="dropdown-content">
+    <span class="tag">Khoa học</span>
+    <span class="tag">Tâm lý học</span>
+    <span class="tag">Kinh doanh</span>
+    <span class="tag">Kỹ năng sống</span>
+    <span class="tag">Tiên Hiệp</span>
+    <span class="tag">Văn học</span>
+    <span class="tag">Lịch sử</span>
+    <span class="tag">Tiểu thuyết</span>
+    <span class="tag">Kinh tế</span>
+    <span class="tag">Kinh dị</span>
+    <span class="tag">Triết học</span>
+    <span class="tag">Tâm lý</span>
+    <span class="tag">Văn hóa - Xã hội</span>
+    <span class="tag">Tình yêu - Hôn nhân</span>
+    <span class="tag">Truyện ngắn</span>
+    <span class="tag">Trinh thám</span>
+    <span class="tag">Ngôn tình</span>
+    <span class="tag">Văn hóa - Lịch sử</span>
+    <span class="tag">Truyện dài</span>
+  </div>
+  </div>
   </nav>
   <a href="/contact" class="sidebar-button contact-button"><i class="fas fa-envelope"></i><span>Liên hệ chúng tôi</span></a>
 </aside>
+<button class="toggle-sidebar" onclick="toggleSidebar()">
+      <i class="fas fa-angle-left"></i>
+</button>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".sidebar-button");
+
+    buttons.forEach(button => {
+      button.classList.remove("active");
+      const href = button.getAttribute("href");
+
+      // So sánh chính xác pathname
+      if (href && window.location.pathname === href) {
+        button.classList.add("active");
+      }
+    });
+  });
+</script>
