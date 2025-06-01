@@ -1,6 +1,3 @@
-<%- include('../layout', {
-  title: 'N10-Ebook - Chi tiết sách', 
-  content: `
 <section>
   <button class="back-button" onclick="goBack()">
     <i class="fas fa-arrow-left"></i>
@@ -10,21 +7,19 @@
   <section class="book-detail">
     <!-- Bên trái: Hình ảnh và nút -->
     <div class="book-left">
-      <img src="/images/${bookById.id_book}.jpg" alt="..." class="book-image" />
+      <img src="/images/<%= bookById[0].id_book %>.jpg" alt="<%= bookById[0].title %>" class="book-image" />
       <div class="button-row">
-        <button class="read-button">Đọc sách</button>
+        <button class="read-button" onclick="location.href='/read/<%= bookById[0].id_book %>'">Đọc sách</button>
         <button><i class="fa-solid fa-heart"></i></button>
         <button><i class="fa-solid fa-share"></i></button>
       </div>
     </div>
     <!-- Bên phải: Thông tin sách -->
     <div class="book-right">
-      <h1 id="book-title">${bookById.title}</h1>
-      <p class="author"><strong id="book-author">Tên tác giả: ${bookById.title}</strong></p>
-      <p><strong>Thể loại: ${bookById.category}</strong>
-        <span class="tag" id="genre-1"></span>
-        <span class="tag" id="genre-2"></span>
-        <span class="tag" id="genre-3"></span>
+      <h1 id="book-title"><%= bookById[0].title %></h1>
+      <p class="author"><strong id="book-author">Tên tác giả: <%= bookById[0].author %></strong></p>
+      <p><strong>Thể loại: </strong>
+        <span class="tag" id="genre-1"><%= bookById[0].category %></span>
       </p>
       <p id="book-summary"><strong>Tóm tắt:</strong> Nội dung tóm tắt...</p>
     </div>
@@ -43,12 +38,12 @@
   <section class="suggestions">
     <h2><em>Có thể bạn sẽ thích</em></h2>
     <div class="book-grid">
-      ${books.slice(30, 35).map(book => `
-        <a href="/review/${book.id_book}" class="item">
-          <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
-          <div class="book-title">${book.title}</div>
+      <% books.slice(30, 35).forEach(book => { %>
+        <a href="/review/<%= book.id_book %>" class="item">
+          <img src="/images/<%= book.id_book %>.jpg" alt="${book.title}" class="book-image" />
+          <div class="book-title"><%= book.title %></div>
         </a>
-      `).join('')}
+      <% }) %>
     </div>
   </section>
 </section>
@@ -70,4 +65,3 @@
     }
   }
 </script>
-` }) %>

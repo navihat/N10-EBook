@@ -4,7 +4,7 @@ const connection = require('../config/database')
 const getAllBooks = async () => {
   try {
     const [results, fields] = await connection.query('SELECT * FROM books');
-    return results; // Chỉ trả về dữ liệu
+    return results;
   } catch (error) {
     throw error;
   }
@@ -19,6 +19,15 @@ const getBookById = async (bookId) => {
   }
 }
 
+const getUserInformation = async (userId) => {
+  try {
+    const [results, fileds] = await connection.query('SELECT username, email FROM users WHERE id_user = ?', [userId])
+    return results;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
-    getAllBooks, getBookById
+    getAllBooks, getBookById, getUserInformation
 }

@@ -25,8 +25,25 @@ const getRegister = (req, res) => {
   res.render('pages/register', { error: null });
 }
 
-const getRead = (req, res) => {
-  res.render('pages/read');
+const getRead = async (req, res) => {
+  // Tra ve sach theo params
+  const bookId = req.params.bookId;
+  const bookById = await getBookById(bookId);
+
+    try {
+    res.render('pages/read', { bookById }, (err, html) => {
+      if (err) return res.status(500).send("Lỗi render nội dung");
+
+      // Nhúng layout, truyền biến title và content cho layout
+      res.render('layout', {
+        title: `Đọc sách - ${bookById.title}`,
+        content: html
+      })
+    });
+  } catch (err) {
+    console.error('Lỗi khi lấy dữ liệu sách:', err);
+    res.status(500).send('Lỗi máy chủ');
+  }
 }
 
 const getFavorvite = (req, res) => {
@@ -41,12 +58,19 @@ const getReview = async (req, res) => {
   // Tra ve sach theo params
   const bookId = req.params.bookId;
   const bookById = await getBookById(bookId);
-  console.log('>>> check bookId:', bookById);
 
   // Tra ve toan bo sach de hien thi sach goi y
     try {
     const books = await getAllBooks();
-    res.render('pages/review', { books, bookById });
+    res.render('pages/review', { books, bookById }, (err, html) => {
+      if (err) return res.status(500).send("Lỗi render nội dung");
+
+      // Nhúng layout, truyền biến title và content cho layout
+      res.render('layout', {
+        title: `Chi tiết sách - ${bookById.title}`,
+        content: html
+      })
+    });
   } catch (err) {
     console.error('Lỗi khi lấy dữ liệu sách:', err);
     res.status(500).send('Lỗi máy chủ');

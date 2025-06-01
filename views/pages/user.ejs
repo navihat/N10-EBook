@@ -1,46 +1,41 @@
-<%- include('../layout', {
-  title: 'N10-Ebook - Tài khoản',
-  content: `
-    <section>
-      <button class="back-button" onclick="goBack()">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      <h2 class="content-title">Thông tin tài khoản</h2>
+<section>
+  <button class="back-button" onclick="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <h2 class="content-title">Thông tin tài khoản</h2>
 
-      <div class="information">
-        <div class="info-container">
-          <div class="user-icon">
-            <i class="fa-solid fa-circle-user"></i>
-          </div>
-          <div class="user-details">
-            <p><strong>Họ và tên:</strong> ${user.username}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-          </div>
-        </div>
+  <div class="information">
+    <div class="info-container">
+      <div class="user-icon">
+        <i class="fa-solid fa-circle-user"></i>
       </div>
-
-      <div class="action-buttons">
-        <button class="action-btn">Chỉnh sửa thông tin</button>
-        <button onclick="window.location.href='/'" class="action-btn">Đăng xuất</button>
+      <div class="user-details">
+        <p><strong>Họ và tên:</strong> <%= user[0].username %></p>
+        <p><strong>Email:</strong> <%= user[0].email %></p>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <script>
-      function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        const toggleBtn = document.querySelector('.toggle-sidebar i');
-        sidebar.classList.toggle('collapsed');
-        toggleBtn.classList.toggle('fa-angle-right');
-        toggleBtn.classList.toggle('fa-angle-left');
-      }
+  <div class="action-buttons">
+    <button class="action-btn">Chỉnh sửa thông tin</button>
+    <button onclick="window.location.href='/'" class="action-btn">Đăng xuất</button>
+  </div>
+</section>
 
-      function goBack() {
-        if (document.referrer) {
-          window.history.back();
-        } else {
-          window.location.href = "home.html";
-        }
-      }
-    </script>
-  `,
-}) %>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.querySelector('.toggle-sidebar i');
+    sidebar.classList.toggle('collapsed');
+    toggleBtn.classList.toggle('fa-angle-right');
+    toggleBtn.classList.toggle('fa-angle-left');
+  }
+
+  function goBack() {
+    if (document.referrer) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  }
+</script>

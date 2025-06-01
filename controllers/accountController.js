@@ -1,5 +1,6 @@
 // Xử lý login và register
 const connection = require('../config/database');
+const { getUserInformation } = require('../services/CRUDService');
 
 const postRegister = async (req, res) => {
   const { username, email, id_user, password, confirmPassword } = req.body;
@@ -55,17 +56,23 @@ const postLogin = async (req, res) => {
 }
 
 const getAccountPage = async (req, res) => {
-  const userId = 20231627; // lấy id từ session
+  const userId = 20231627; 
+  const user = await getUserInformation(userId);
 
   try {
-    const [rows] = await connection.execute(
-      'SELECT username, email FROM users WHERE id_user = ?',
-      [userId]
-    );
+    console.log(">>> check user:", user[0]);
 
-    const user = rows[0];
-
-    res.render('pages/user', { user }); // truyền biến user sang trang EJS
+    res.render('pages/user', { user }, (err, html) => {
+      if (err) {
+        console.error("Check error:", err);
+        return res.status(500).send("Lỗi render nội dung");
+      }
+      // Nhúng layout, truyền biến title và content cho layout
+      res.render('layout', {
+        title: `Thông tin tài khoản`,
+        content: html
+      })
+    });
   } catch (err) {
     console.error('Lỗi khi lấy thông tin tài khoản:', err);
     res.status(500).send('Lỗi máy chủ');

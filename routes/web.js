@@ -22,7 +22,7 @@ router.get('/login', getLogin);
 router.get('/register', getRegister);
 
 // Trang nội dung sách
-router.get('/read', getRead);
+router.get('/read/:bookId', getRead);
 
 // Trang yêu thích
 router.get('/favorites', getFavorvite);
