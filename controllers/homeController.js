@@ -39,8 +39,14 @@ const getUser = (req, res) => {
   res.render('pages/user'); // views/pages/user
 }
 
-const getContent = (req, res) => {
-  res.render('pages/content');
+const getContent = async (req, res) => {
+    try {
+    const books = await getAllBooks();
+    res.render('pages/content', { books });
+  } catch (err) {
+    console.error('Lỗi khi lấy dữ liệu sách:', err);
+    res.status(500).send('Lỗi máy chủ');
+  }
 }
 
 module.exports = {

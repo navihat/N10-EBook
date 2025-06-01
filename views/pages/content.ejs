@@ -8,7 +8,7 @@
 
   <!-- Book detail -->
   <section class="book-detail">
-    <img src="/images/Biasachmau.png" alt="Dưới bầu trời trắng" class="book-image">
+    <img src="/images/1.jpg" alt="Dưới bầu trời trắng" class="book-image">
     <div class="book-info">
       <h1 id="book-title">Tiêu đề sách</h1>
       <p class="author"><strong id="book-author">Tên tác giả</strong></p>
@@ -17,9 +17,9 @@
         <span class="tag" id="genre-2"></span>
         <span class="tag" id="genre-3"></span>
       </p>
-      <div class="rating">
+      <!-- <div class="rating">
         <strong>Đánh giá:</strong> <span id="book-rating">⭐⭐⭐⭐⭐</span>
-      </div>
+      </div> -->
       <p id="book-summary"><strong>Tóm tắt:</strong> Nội dung tóm tắt...</p>
 
       <div class="button-row">
@@ -42,9 +42,15 @@
   <!-- Suggestions -->
   <section class="suggestions">
     <h2><em>Có thể bạn sẽ thích</em></h2>
-    <div class="suggestion-list" id="suggestion-list">
-      <!-- Các gợi ý sách sẽ được render động tại đây -->
+    <div class="book-grid">
+      ${books.slice(30, 35).map(book => `
+        <a href="/content/${book.id_book}" class="item">
+          <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
+          <div class="book-title">${book.title}</div>
+        </a>
+      `).join('')}
     </div>
+      <!-- Các gợi ý sách sẽ được render động tại đây -->
   </section>
 </section>
 

@@ -31,11 +31,15 @@ router.get('/favorites', getFavorvite);
 router.get('/user', getAccountPage);
 
 // Trang thông tin về sách
-router.get('/content', getContent);
+router.get('/content/:id', getContent);
 
-// Post trang login
+// Post trang register
 router.post('/register', postRegister);
 
+// Post trang login
 router.post('/login', postLogin);
+
+
+
 
 module.exports = router

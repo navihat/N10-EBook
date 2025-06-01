@@ -372,55 +372,6 @@
  
  
     /* RIÊNG */
- 
-    /* TRANG CHỦ và MỤC YÊU THÍCH */
- 
-    .book-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
- 
-    .item {
-      width: calc(20% - 13px);
-    }
- 
-    .item {
-      padding: 16px;
-      background: #f8f9ff;
-      border-radius: 12px;
-      border: 1px solid #ddd;
-      text-align: center;
-      font-weight: bold;
-      font-size: 16px;
-      transition: background 0.3s, transform 0.2s;
-      cursor: pointer;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
- 
-    .item:hover {
-      background: #eef3ff;
-      transform: translateY(-2px);
-    }
- 
-    .book-section {
-      margin-bottom: 32px;
-    }
- 
-    .section-title {
-      font-size: 22px;
-      font-weight: 500;
-      font-style: italic;
-      margin-bottom: 8px;
-      border-bottom: 2px solid #4a90ff;
-      display: inline-block;
-      
-    }
- 
- 
     
     /* TRANG NỘI DUNG */
   
@@ -793,30 +744,80 @@
       transform: scale(1.1);
     }
 
+    /* TRANG CHỦ và MỤC YÊU THÍCH */
+ 
+    .item {
+      width: calc(20% - 13px);
+    }
+ 
+    .item {
+      padding: 16px;
+      background: none;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+ 
+    .item:hover {
+      background: #eef3ff;
+      transform: translateY(-2px);
+    }
+ 
+    .book-section {
+      margin-bottom: 32px;
+    }
+ 
+    .section-title {
+      font-size: 22px;
+      font-weight: 500;
+      font-style: italic;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #4a90ff;
+      display: inline-block;
+      
+    }
+
+
    .book-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 31px;
   }
 
   .item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 150px;
+    width: 180px;
+    height: 270px;
     text-align: center;
+    text-decoration: none;
+    color: inherit;
   }
 
   .book-image {
-    width: 120px;
-    height: 220px;
+    width: 150px;
+    height: 200px;         
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
   }
 
   .book-title {
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 500;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    white-space: normal;
+    max-height: 48px;        
+    line-height: 1.6;
   }
