@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const {
-    getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister, getContent,
+    getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister, getReview,
 } = require('../controllers/homeController');
 
 const { 
@@ -31,7 +31,7 @@ router.get('/favorites', getFavorvite);
 router.get('/user', getAccountPage);
 
 // Trang thông tin về sách
-router.get('/content/:id', getContent);
+router.get('/review/:bookId', getReview);
 
 // Post trang register
 router.post('/register', postRegister);

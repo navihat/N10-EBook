@@ -44,8 +44,6 @@ const postLogin = async (req, res) => {
     )
     console.log(">>> check correctUser", correctUser);
     if (correctUser.length > 0) {
-      const user = correctUser[0];
-      req.session.userId = user.id_user;
       res.redirect('/');
     } else {
       res.render('pages/login', {error: 'Email hoặc mật khẩu không đúng'})
@@ -57,7 +55,7 @@ const postLogin = async (req, res) => {
 }
 
 const getAccountPage = async (req, res) => {
-  const userId = req.session.userId; // lấy id từ session
+  const userId = 20231627; // lấy id từ session
 
   try {
     const [rows] = await connection.execute(

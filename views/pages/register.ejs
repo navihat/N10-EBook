@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>N1O-Ebook - Đăng ký</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Asap", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 1000px;
+      height: 540px;
+      background: white;
+      border-radius: 24px;
+      display: flex;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left, .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .left img {
+      width: 640px;
+      height: auto;
+      margin: -5px 0px 40px -80px;
+    }
+
+    .left p {
+      font-size: 25px;
+      font-style: italic;
+      color: #333;
+      max-width: 350px;
+      line-height: 1.5;
+      margin: -40px 0px 50px -90px;
+    }
+
+    .register-box {
+      background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 360px;
+      padding: 30px 30px 80px;
+      margin-left: -90px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .register-box .back {
+      display: flex;
+      align-items: center;
+      color: #005cd6;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      user-select: none;
+      gap: 6px;
+    }
+
+    .register-box .back svg {
+      width: 20px;
+      height: 20px;
+      fill: #005cd6;
+    }
+
+    .register-box input {
+      padding: 12px 16px;
+      border: none;
+      border-radius: 24px;
+      font-size: 16px;
+      outline: none;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    .register-box input::placeholder {
+      color: #87a4d6;
+    }
+
+    .register-box button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 28px;
+      background-color: #005cd6;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .register-box button:hover {
+      background-color: #003c9e;
+    }
+
+    .switch-auth {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .switch-auth a {
+      color: #005cd6;
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+
+    .switch-auth a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <img src="/images/logo.png" alt="Logo" />
+      <p>Chào mừng bạn đến khám phá khu văn học đa dạng cùng chúng tôi!</p>
+    </div>
+    <div class="right">
+      <div class="register-box">
+        <div class="back" onclick="window.location.href='/login'" role="button" tabindex="0" onkeypress="if(event.key==='Enter') window.location.href='/login';">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M15 18l-6-6 6-6" stroke="#005cd6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Quay lại</span>
+        </div>
+        <form action="/register" method="POST">
+          <input type="text" name="username" placeholder="Tên đăng nhập" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="number" name="id_user" placeholder="Mã số sinh viên" required />
+          <input type="password" name="password" placeholder="Mật khẩu" required />
+          <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" required />
+          <button type="submit">Đăng ký</button>
+        </form>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div style="color: red; text-align: center; margin-top: 12px;">
+            <%= error %>
+          </div>
+        <% } %>
+        <div class="switch-auth">
+          <span>Đã có tài khoản?</span>
+          <a href="/login">Đăng nhập</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

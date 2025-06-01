@@ -7,7 +7,7 @@
         <h2 class="section-title">Sách hay tháng 5</h2>
         <div class="book-grid">
           ${books.slice(0, 5).map(book => `
-            <a href="/content/${book.id_book}" class="item">
+            <a href="/review/${book.id_book}" class="item">
               <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
               <div class="book-title">${book.title}</div>
             </a>
@@ -20,7 +20,7 @@
         <h2 class="section-title">Sách mới ra mắt</h2>
         <div class="book-grid">
           ${books.slice(5, 10).map(book => `
-            <a href="/content/${book.id_book}" class="item">
+            <a href="/review/${book.id_book}" class="item">
               <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
               <div class="book-title">${book.title}</div>
             </a>
@@ -33,7 +33,7 @@
         <h2 class="section-title">Xem thêm</h2>
         <div class="book-grid">
           ${books.slice(10, 50).map(book => `
-            <a href="/content/${book.id_book}" class="item">
+            <a href="/review/${book.id_book}" class="item">
               <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
               <div class="book-title">${book.title}</div>
             </a>

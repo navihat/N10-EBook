@@ -374,27 +374,24 @@
     /* RIÊNG */
     
     /* TRANG NỘI DUNG */
-  
-    .book-detail {
-      display: flex;
-      margin-bottom: 30px;
-    }
  
     .book-detail img {
-      height: 450px;
-      margin-right: 30px;
+      width: 220px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
  
     .book-info h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
+      font-size: 36px;
+      margin-bottom: 10px;
     }
  
     .book-info .author {
-      font-size: 20px;
-      color: #707070;
-      margin-bottom: 20px;
-      margin-left: 110px;
+      font-size: 18px;
+      margin: 0 0 10px 0;
+      color: #555;
     }
  
     .book-info .rating span {
@@ -402,8 +399,8 @@
     }
  
     .book-info p {
-      margin: 20px 0;
-      line-height: 1.6;
+      margin: 10px 0;
+      line-height: 1.5;
     }
  
  
@@ -423,8 +420,9 @@
       transition: background 0.3s ease, transform 0.2s ease;
     }
     .button-row {
+      margin-top: 20px;
       display: flex;           /* Đặt các button nằm ngang */
-      gap: 20px;               /* Khoảng cách giữa các nút */
+      gap: 7px;               /* Khoảng cách giữa các nút */
       justify-content: center; /* Căn giữa theo chiều ngang */
       flex-wrap: wrap;         /* Tự động xuống dòng nếu màn hình hẹp */
     }
@@ -434,7 +432,61 @@
       transform: scale(1.05);
       color: white;
     }
- 
+ .book-detail {
+  display: flex;
+  padding-left: 80px;
+  gap: 30px;
+}
+
+
+.book-left .button-row button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 20px;
+  background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+  color: #005cd6;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-left .button-row button:hover {
+  background: #336fe0;
+  color: white;
+}
+.book-detail {
+  display: flex;
+  gap: 40px;
+  padding: 30px 60px;
+  flex-wrap: wrap;
+}
+
+.book-left {
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-right {
+  flex: 2;
+  min-width: 300px;
+}
+
+.book-right h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.book-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
     /* Comments and suggestions */
  
     .comments, .suggestions {

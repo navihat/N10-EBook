@@ -10,6 +10,15 @@ const getAllBooks = async () => {
   }
 }
 
+const getBookById = async (bookId) => {
+  try {
+    const [results, fields] = await connection.query('SELECT * FROM books WHERE id_book = ?', [bookId]);
+    return results;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
-    getAllBooks,
+    getAllBooks, getBookById
 }
