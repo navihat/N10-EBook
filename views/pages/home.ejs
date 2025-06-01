@@ -6,39 +6,42 @@
       <div class="book-section">
         <h2 class="section-title">Sách hay tháng 5</h2>
         <div class="book-grid">
-          <div class="item">Sách 1</div>
-          <div class="item">Sách 2</div>
-          <div class="item">Sách 3</div>
-          <div class="item">Sách 4</div>
-          <div class="item">Sách 5</div>
+          ${books.slice(0, 5).map(book => `
+            <a href="/book/${book.id_book}" class="item">
+              <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
+              <div class="book-title">${book.title}</div>
+            </a>
+          `).join('')}
         </div>
       </div>
-
+ 
       <!-- Sách mới ra mắt -->
       <div class="book-section">
         <h2 class="section-title">Sách mới ra mắt</h2>
         <div class="book-grid">
-          <div class="item">Sách 6</div>
-          <div class="item">Sách 7</div>
-          <div class="item">Sách 8</div>
-          <div class="item">Sách 9</div>
-          <div class="item">Sách 10</div>
+          ${books.slice(5, 10).map(book => `
+            <a href="/book/${book.id_book}" class="item">
+              <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
+              <div class="book-title">${book.title}</div>
+            </a>
+          `).join('')}
         </div>
       </div>
-
+ 
       <!-- Tác giả nổi bật -->
       <div class="book-section">
         <h2 class="section-title">Tác giả nổi bật</h2>
         <div class="book-grid">
-          <div class="item">Sách 11</div>
-          <div class="item">Sách 12</div>
-          <div class="item">Sách 13</div>
-          <div class="item">Sách 14</div>
-          <div class="item">Sách 15</div>
+          ${books.slice(10, 15).map(book => `
+            <a href="/book/${book.id_book}" class="item">
+              <img src="/images/${book.id_book}.jpg" alt="${book.title}" class="book-image"/>
+              <div class="book-title">${book.title}</div>
+            </a>
+          `).join('')}
         </div>
       </div>
     </section>
-
+ 
     <script>
       function toggleSidebar() {
         const sidebar = document.querySelector('.sidebar');
@@ -47,10 +50,10 @@
         toggleBtn.classList.toggle('fa-angle-right');
         toggleBtn.classList.toggle('fa-angle-left');
       }
-
+ 
       document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll(".sidebar-button");
-
+ 
         buttons.forEach(button => {
           const href = button.getAttribute("href");
           if (href && window.location.pathname.includes(href)) {

@@ -4,6 +4,7 @@ const path = require('path');
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database')
+const sessionMiddleware = require('./config/session');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,13 +20,9 @@ configViewEngine(app);
 // khai báo route
 app.use('/', webRoutes);
 
-// simple querry
-// connection.query(
-//   'SELECT DISTINCT category FROM books;',
-//   function(err, results, fields) {
-//     console.log(results)
-//   }
-// )
+// config session
+app.use(sessionMiddleware);
+
 
 // Middleware để parse body form
 app.use(express.urlencoded({ extended: true }));

@@ -1,9 +1,13 @@
+/// Điều hướng trang, GET và POST
 const express = require('express');
 const router = express.Router();
 const {
     getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister, getContent,
-    postLogin,
-} = require('../controllers/homeController')
+} = require('../controllers/homeController');
+
+const { 
+    postLogin, postRegister, getAccountPage,
+} = require('../controllers/accountController');
 
 // Trang chủ
 router.get('/', getHome);
@@ -24,12 +28,14 @@ router.get('/read', getRead);
 router.get('/favorites', getFavorvite);
 
 // Trang thông tin người dùng
-router.get('/user', getUser);
+router.get('/user', getAccountPage);
 
 // Trang thông tin về sách
 router.get('/content', getContent);
 
 // Post trang login
+router.post('/register', postRegister);
+
 router.post('/login', postLogin);
 
 module.exports = router

@@ -1,8 +1,18 @@
+// Xử lý sau khi nhận được req từ route
 const connection = require('../config/database');
+const { getAllBooks } = require('../services/CRUDService');
+
+const path = require('path');
 
 
-const getHome = (req, res) => {
-    res.render('pages/home'); // views/pages/home.ejs
+const getHome = async (req, res) => {
+    try {
+    const books = await getAllBooks();
+    res.render('pages/home', { books });
+  } catch (err) {
+    console.error('Lỗi khi lấy dữ liệu sách:', err);
+    res.status(500).send('Lỗi máy chủ');
+  }
 }
 
 const getContact = (req, res) => {
@@ -10,11 +20,11 @@ const getContact = (req, res) => {
 }
 
 const getLogin = (req, res) => {
-  res.render('pages/login', { backUrl: '/register' }); // views/pages/login.ejs
+  res.render('pages/login', { error: null });
 }
 
 const getRegister = (req, res) => {
-  res.render('pages/register', { backUrl: '/register' }); // views/pages/register.ejs
+  res.render('pages/register', { error: null });
 }
 
 const getRead = (req, res) => {
@@ -33,12 +43,6 @@ const getContent = (req, res) => {
   res.render('pages/content');
 }
 
-const postLogin = (req, res) => {
-  res.send("du ma may");
-  console.log(">>> check req.body", req.body);
-}
-
 module.exports = {
-    getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister, getContent,
-    postLogin,
+    getHome, getContact, getLogin, getRegister, getRead, getFavorvite, getUser, getContent,
 }
