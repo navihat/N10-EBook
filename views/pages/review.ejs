@@ -10,7 +10,12 @@
       <img src="/images/<%= bookById[0].id_book %>.jpg" alt="<%= bookById[0].title %>" class="book-image" />
       <div class="button-row">
         <button class="read-button" onclick="location.href='/read/<%= bookById[0].id_book %>'">Đọc sách</button>
-        <button><i class="fa-solid fa-heart"></i></button>
+        <form action="/favorite-add" method="POST" id="add-to-favorite-form">
+          <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
+          <button type="submit" style="text-decoration: none; border: none; background: none; padding: 0;">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+        </form>
         <button><i class="fa-solid fa-share"></i></button>
       </div>
     </div>

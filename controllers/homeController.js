@@ -1,6 +1,5 @@
 // Xử lý sau khi nhận được req từ route
-const connection = require('../config/database');
-const { getAllBooks, getBookById } = require('../services/CRUDService');
+const { getAllBooks, getBookById, getFavorviteBook } = require('../services/CRUDService');
 
 
 const getHome = async (req, res) => {
@@ -46,17 +45,25 @@ const getRead = async (req, res) => {
   }
 }
 
-const getFavorvite = (req, res) => {
-  if (!req.session.user) {
-    // Gửi thông báo rồi redirect về /login nếu OK
-    return res.send(`
-      <script>
-        alert('Bạn chưa đăng nhập. Vui lòng đăng nhập để tiếp tục.');
-        window.location.href = '/login';
-      </script>
-    `);
+const getFavorvite = async (req, res) => {
+  const userId = req.session.user.id_user;
+  // console.log(">>>check user: ", userId);
+  try {
+    const bookByIdUser = await getFavorviteBook(userId);
+    // console.log(">>>check book: ", bookByIdUser);
+    res.render('pages/favorites', { bookByIdUser }, (err, html) => {
+    if (err) return res.status(500).send("Lỗi render nội dung");
+
+      // Nhúng layout, truyền biến title và content cho layout
+      res.render('layout', {
+        title: `Sách yêu thích của bạn`,
+        content: html
+      })
+    });
+  } catch(err) {
+    console.error('Lỗi khi lấy dữ liệu sách:', err);
+    res.status(500).send('Lỗi máy chủ');
   }
-  res.render('pages/favorites');
 }
 
 const getUser = (req, res) => {

@@ -1,39 +1,32 @@
-<%- include('../layout', {
-  title: 'N10-Ebook - Mục yêu thích',
-  content: `
-    <section>
-      <button class="back-button" onclick="goBack()">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      <h2 class="content-title">Sách yêu thích của bạn</h2>
-      <div class="book-grid">
-        <div class="item">Sách 1</div>
-        <div class="item">Sách 2</div>
-        <div class="item">Sách 3</div>
-        <div class="item">Sách 4</div>
-        <div class="item">Sách 5</div>
-        <div class="item">Sách 6</div>
-        <div class="item">Sách 7</div>
-        <div class="item">Sách 8</div>
-      </div>
-    </section>
-    
-    <script>
-      function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        const toggleBtn = document.querySelector('.toggle-sidebar i');
-        sidebar.classList.toggle('collapsed');
-        toggleBtn.classList.toggle('fa-angle-right');
-        toggleBtn.classList.toggle('fa-angle-left');
-      }
+<section>
+  <button class="back-button" onclick="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <h2 class="content-title">Sách yêu thích của bạn</h2>
+  <div class="book-grid">
+    <% bookByIdUser.forEach(book => { %>
+      <a href="/review/<%= book.id_book %>" class="item">
+        <img src="/images/<%= book.id_book %>.jpg" alt="<%= book.title %>" class="book-image"/>
+        <div class="book-title"><%= book.title %></div>
+      </a>
+    <% }); %>
+  </div>
+</section>
 
-      function goBack() {
-        if (document.referrer) {
-          window.history.back();
-        } else {
-          window.location.href = "/";
-        }
-      }
-    </script>
-  `
-}) %>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.querySelector('.toggle-sidebar i');
+    sidebar.classList.toggle('collapsed');
+    toggleBtn.classList.toggle('fa-angle-right');
+    toggleBtn.classList.toggle('fa-angle-left');
+  }
+
+  function goBack() {
+    if (document.referrer) {
+      window.history.back();
+    } else {
+      window.location.href = "/";
+    }
+  }
+</script>

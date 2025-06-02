@@ -14,8 +14,12 @@ const {
 } = require('../middleware/auth');
 
 const { 
-    queryByCategory
+    queryBySearch, queryByCategory
 } = require('../controllers/queryController');
+
+const { 
+    postAddFavorite, 
+} = require('../controllers/addFavoriteController');
 
 
 // Trang chủ
@@ -34,7 +38,7 @@ router.get('/register', getRegister);
 router.get('/read/:bookId', getRead);
 
 // Trang yêu thích
-router.get('/favorites', getFavorvite);
+router.get('/favorites', ensureAuthenticated, getFavorvite);
 
 // Trang thông tin người dùng
 router.get('/user', ensureAuthenticated, getAccountPage);
@@ -51,8 +55,18 @@ router.post('/register', postRegister);
 // Post trang login
 router.post('/login', postLogin);
 
-// Trang tìm kiếm
-router.get('/search', queryByCategory);
+// Trang tìm kiếm bằng chữ tay và thể loại
+router.get('/search', (req, res, next) => {
+  if (req.query.search) {
+    return queryBySearch(req, res);
+  } else if (req.query.category) {
+    return queryByCategory(req, res);
+  }
+});
+
+// Thêm yêu thích
+router.post('/favorite-add', ensureAuthenticated, postAddFavorite);
+
 
 
 module.exports = router
