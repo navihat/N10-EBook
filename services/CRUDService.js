@@ -1,6 +1,7 @@
 // Thư mục này để lấy dữ liệu cho controllers
 const connection = require('../config/database')
 
+// lay toan bo sach
 const getAllBooks = async () => {
   try {
     const [results, fields] = await connection.query('SELECT * FROM books');
@@ -10,6 +11,7 @@ const getAllBooks = async () => {
   }
 }
 
+// lay 1 sach theo params
 const getBookById = async (bookId) => {
   try {
     const [results, fields] = await connection.query('SELECT * FROM books WHERE id_book = ?', [bookId]);
@@ -19,6 +21,7 @@ const getBookById = async (bookId) => {
   }
 }
 
+// lay thong tin nguoi dung voi dau vao la session
 const getUserInformation = async (userId) => {
   try {
     const [results, fileds] = await connection.query('SELECT * FROM users WHERE id_user = ?', [userId])
@@ -28,6 +31,16 @@ const getUserInformation = async (userId) => {
   }
 }
 
+const getBookByQuery = async (query) => {
+  try {
+    const [results, fields] = await connection.query(
+      `SELECT * FROM books WHERE category LIKE ? OR summary LIKE ? OR title LIKE ?`, 
+      [`%${query}%`, `%${query}%`, `%${query}%`])
+    return results;
+  } catch (error) {
+    throw error;
+  }
+}
 module.exports = {
-    getAllBooks, getBookById, getUserInformation
+    getAllBooks, getBookById, getUserInformation, getBookByQuery
 }

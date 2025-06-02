@@ -6,8 +6,7 @@ const postRegister = async (req, res) => {
   const { username, email, fullname, id_user, sex, address, password, confirmPassword } = req.body;
   // console.log(">>> check req.body:", req.body)
   const date_created = new Date()
-    .toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' })
-    .replace('T', ' ');
+    .toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' }).split(' ')[0];
   const role = 'user';
 
   if (password != confirmPassword) { 
@@ -46,6 +45,7 @@ const postLogin = async (req, res) => {
 
     if (correctUser.length > 0) {
       req.session.user = correctUser[0];
+      // console.log(">>>check req.session", req.session);
       res.redirect('/');
     } else {
       res.render('pages/login', {error: 'Email hoặc mật khẩu không đúng'})

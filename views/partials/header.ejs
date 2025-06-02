@@ -1,7 +1,9 @@
 <header class="header">
   <div class="search-container">
-    <input type="text" class="search-bar" placeholder="Tìm kiếm sách...">
-    <button class="search-icon"><i class="fas fa-search"></i></button>
+    <form action="/search" method="GET" class="search-form">
+      <input type="text" name="category" class="search-bar" placeholder="Tìm kiếm sách..." required>
+      <button type="submit" class="search-icon"><i class="fas fa-search"></i></button>
+    </form>
   </div>
   <div class="header-icons">
     <div class="user-dropdown-wrapper">

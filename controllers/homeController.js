@@ -31,7 +31,7 @@ const getRead = async (req, res) => {
   const bookById = await getBookById(bookId);
 
     try {
-    res.render('pages/read', { bookById }, (err, html) => {
+      res.render('pages/read', { bookById }, (err, html) => {
       if (err) return res.status(500).send("Lỗi render nội dung");
 
       // Nhúng layout, truyền biến title và content cho layout
@@ -67,7 +67,6 @@ const getReview = async (req, res) => {
   // Tra ve sach theo params
   const bookId = req.params.bookId;
   const bookById = await getBookById(bookId);
-  // console.log(">>>check: ", bookById);
 
   // Tra ve toan bo sach de hien thi sach goi y
     try {

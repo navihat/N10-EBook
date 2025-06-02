@@ -13,6 +13,11 @@ const {
     ensureAuthenticated, ensureAdmin 
 } = require('../middleware/auth');
 
+const { 
+    queryByCategory
+} = require('../controllers/queryController');
+
+
 // Trang chủ
 router.get('/', getHome);
 
@@ -46,7 +51,8 @@ router.post('/register', postRegister);
 // Post trang login
 router.post('/login', postLogin);
 
-
+// Trang tìm kiếm
+router.get('/search', queryByCategory);
 
 
 module.exports = router
