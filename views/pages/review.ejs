@@ -23,7 +23,7 @@
           <%= bookById[0].category %>
         </a>
       </p>
-      <p id="book-summary"><strong>Tóm tắt:</strong><%= bookById[0].summary %></p>
+      <p id="book-summary"><strong>Tóm tắt: </strong><%= bookById[0].summary %></p>
     </div>
   </section>
 
@@ -40,7 +40,7 @@
   <section class="suggestions">
     <h2><em>Có thể bạn sẽ thích</em></h2>
     <div class="book-grid">
-      <% books.slice(30, 35).forEach(book => { %>
+      <% books.slice(20, 35).forEach(book => { %>
         <a href="/review/<%= book.id_book %>" class="item">
           <img src="/images/<%= book.id_book %>.jpg" alt="${book.title}" class="book-image" />
           <div class="book-title"><%= book.title %></div>

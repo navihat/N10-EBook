@@ -57,15 +57,6 @@ const postLogin = async (req, res) => {
 }
 
 const getAccountPage = async (req, res) => {
-  if (!req.session.user) {
-    // Gửi thông báo rồi redirect về /login nếu OK
-    return res.send(`
-      <script>
-        alert('Bạn chưa đăng nhập. Vui lòng đăng nhập để tiếp tục.');
-        window.location.href = '/login';
-      </script>
-    `);
-  }
 
   const user = await getUserInformation(req.session.user.id_user);
 

@@ -9,6 +9,10 @@ const {
     postLogin, postRegister, getAccountPage, getLogout
 } = require('../controllers/accountController');
 
+const { 
+    ensureAuthenticated, ensureAdmin 
+} = require('../middleware/auth');
+
 // Trang chủ
 router.get('/', getHome);
 
@@ -28,7 +32,7 @@ router.get('/read/:bookId', getRead);
 router.get('/favorites', getFavorvite);
 
 // Trang thông tin người dùng
-router.get('/user', getAccountPage);
+router.get('/user', ensureAuthenticated, getAccountPage);
 
 // Trang thông tin về sách
 router.get('/review/:bookId', getReview);
