@@ -19,9 +19,11 @@
       <h1 id="book-title"><%= bookById[0].title %></h1>
       <p class="author"><strong id="book-author">Tên tác giả: <%= bookById[0].author %></strong></p>
       <p><strong>Thể loại: </strong>
-        <span class="tag" id="genre-1"><%= bookById[0].category %></span>
+        <a class="tag" id="genre-1" href="/search?category=<%= bookById[0].category %>">
+          <%= bookById[0].category %>
+        </a>
       </p>
-      <p id="book-summary"><strong>Tóm tắt:</strong> Nội dung tóm tắt...</p>
+      <p id="book-summary"><strong>Tóm tắt:</strong><%= bookById[0].summary %></p>
     </div>
   </section>
 

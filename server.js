@@ -10,6 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const hostname = process.env.HOSTNAME;
 
+// config session
+app.use(sessionMiddleware);
+
 // config req.body
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -19,10 +22,6 @@ configViewEngine(app);
 
 // khai báo route
 app.use('/', webRoutes);
-
-// config session
-app.use(sessionMiddleware);
-
 
 // Middleware để parse body form
 app.use(express.urlencoded({ extended: true }));

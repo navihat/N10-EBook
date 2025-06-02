@@ -6,7 +6,7 @@ const {
 } = require('../controllers/homeController');
 
 const { 
-    postLogin, postRegister, getAccountPage,
+    postLogin, postRegister, getAccountPage, getLogout
 } = require('../controllers/accountController');
 
 // Trang chủ
@@ -32,6 +32,9 @@ router.get('/user', getAccountPage);
 
 // Trang thông tin về sách
 router.get('/review/:bookId', getReview);
+
+// Logout để xóa session sau đó chuyển đến /login
+router.get('/logout', getLogout);
 
 // Post trang register
 router.post('/register', postRegister);

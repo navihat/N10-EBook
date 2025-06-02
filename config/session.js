@@ -6,7 +6,7 @@ const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false, // Đặt true nếu dùng HTTPS
+    maxAge: 1000 * 60 * 60 * 1, 
   }
 });
 

@@ -162,6 +162,7 @@
     .tag {
       background-color: #e0ecff;
       color: #005cd6;
+      text-decoration: none;
       padding: 6px 12px;
       margin: 4px 0;
       border-radius: 20px;

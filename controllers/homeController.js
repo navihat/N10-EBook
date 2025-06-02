@@ -58,6 +58,7 @@ const getReview = async (req, res) => {
   // Tra ve sach theo params
   const bookId = req.params.bookId;
   const bookById = await getBookById(bookId);
+  // console.log(">>>check: ", bookById);
 
   // Tra ve toan bo sach de hien thi sach goi y
     try {
