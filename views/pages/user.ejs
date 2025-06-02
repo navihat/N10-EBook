@@ -10,8 +10,19 @@
         <i class="fa-solid fa-circle-user"></i>
       </div>
       <div class="user-details">
-        <p><strong>Họ và tên:</strong> <%= user[0].username %></p>
+        <p><strong>Họ và tên:</strong> <%= user[0].fullname %></p>
         <p><strong>Email:</strong> <%= user[0].email %></p>
+        <p><strong>Giới tính:</strong> <%= user[0].sex %></p>
+        <p><strong>Địa chỉ:</strong> <%= user[0].address %></p>
+        <p><strong>Vai trò:</strong>
+          <% if (user[0].role === 'user') { %>
+            Tài khoản cá nhân
+          <% } else if (user[0].role === 'admin') { %>
+            Quản trị viên
+          <% } else { %>
+            Không xác định
+          <% } %>
+        </p>
       </div>
     </div>
   </div>

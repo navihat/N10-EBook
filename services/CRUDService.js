@@ -21,7 +21,7 @@ const getBookById = async (bookId) => {
 
 const getUserInformation = async (userId) => {
   try {
-    const [results, fileds] = await connection.query('SELECT username, email FROM users WHERE id_user = ?', [userId])
+    const [results, fileds] = await connection.query('SELECT * FROM users WHERE id_user = ?', [userId])
     return results;
   } catch (error) {
     throw error;

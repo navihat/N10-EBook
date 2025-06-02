@@ -3,7 +3,7 @@ const connection = require('../config/database');
 const { getUserInformation } = require('../services/CRUDService');
 
 const postRegister = async (req, res) => {
-  const { username, email, id_user, password, confirmPassword } = req.body;
+  const { username, email, fullname, id_user, sex, address, password, confirmPassword } = req.body;
 
   const date_created = new Date()
     .toLocaleString('sv-SE', { timeZone: 'Asia/Ho_Chi_Minh' })
@@ -26,10 +26,10 @@ const postRegister = async (req, res) => {
     }
 
     await connection.query(
-      `INSERT INTO users (id_user, username, email, password, date_created, role) VALUES (?, ?, ?, ?, ?, ?)`,
-      [id_user, username, email, password, date_created, role]
+      `INSERT INTO users (id_user, username, email, fullname, sex, address, password, date_created, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [id_user, username, email, fullname, sex, address, password, date_created, role]
     );
-    return res.render('pages/login', { error: 'Tạo tài khoàn thành công, hãy đăng nhập.',});
+    return res.render('pages/login', { error: 'Tạo tài khoàn thành công, hãy đăng nhập.',});  
   } catch (err) {
     console.error(err);
     return res.status(500).send("Lỗi máy chủ.")

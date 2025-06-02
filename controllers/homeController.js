@@ -47,11 +47,11 @@ const getRead = async (req, res) => {
 }
 
 const getFavorvite = (req, res) => {
-  res.render('pages/favorites'); // views/pages/favorites
+  res.render('pages/favorites');
 }
 
 const getUser = (req, res) => {
-  res.render('pages/user'); // views/pages/user
+  res.render('pages/user'); 
 }
 
 const getReview = async (req, res) => {
