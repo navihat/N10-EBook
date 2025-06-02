@@ -17,10 +17,11 @@
 
       <div class="form-box">
         <h3>Đóng góp của bạn dành cho chúng tôi</h3>
-        <input type="text" placeholder="Họ và tên">
-        <input type="email" placeholder="Email">
-        <textarea placeholder="Góp ý" rows="3"></textarea>
-        <button>Gửi</button>
+        <form action="/feedback" method="POST"> 
+          <input type="text" name="fullname" placeholder="Họ và tên" required> 
+          <input type="email" name="email" placeholder="Email" required> 
+          <textarea name="feedback_text" placeholder="Góp ý" rows="3" required></textarea> 
+          <button type="submit">Gửi</button> </form>
       </div>
     </section>
 

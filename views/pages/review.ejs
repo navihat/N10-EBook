@@ -12,7 +12,7 @@
         <button class="read-button" onclick="location.href='/read/<%= bookById[0].id_book %>'">Đọc sách</button>
         <form action="/favorite-add" method="POST" id="add-to-favorite-form">
           <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
-          <button type="submit" style="text-decoration: none; border: none; background: none; padding: 0;">
+          <button type="submit" class="heart-button">
             <i class="fa-solid fa-heart"></i>
           </button>
         </form>
@@ -37,8 +37,23 @@
     <h2><em>Bình luận & Đánh giá</em></h2>
     <div class="comment-box" id="comment-list">
       <!-- Các comment sẽ được render động tại đây -->
+       <% if (commentById.length === 0) { %>
+          <p>Chưa có bình luận nào.</p>
+        <% } else { %>
+          <% commentById.forEach(comment => { %>
+            <div class="comment-item" style="margin-bottom: 1em;">
+              <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                <span><%= fullnameUser[0].fullname %></span>
+                <span><%= new Date(comment.date_created).toLocaleString('vi-VN') %></span>
+              </div>
+              <p><%= comment.text %></p>
+            </div>
+          <% }) %>
+        <% } %>
     </div>
-    <input type="text" class="input-comment" placeholder="Bình luận ngay" id="new-comment">
+    <form action="/comment-add" method="POST">
+      <input type="text" name="comment_text" class="input-comment" placeholder="Bình luận ngay" id="new-comment" required>
+    </form>
   </section>
 
   <!-- Suggestions -->

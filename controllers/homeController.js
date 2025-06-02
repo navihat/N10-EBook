@@ -1,5 +1,5 @@
 // Xử lý sau khi nhận được req từ route
-const { getAllBooks, getBookById, getFavorviteBook } = require('../services/CRUDService');
+const { getAllBooks, getBookById, getFavorviteBook, getCommentById, getUsersByBookId } = require('../services/CRUDService');
 
 
 const getHome = async (req, res) => {
@@ -13,7 +13,7 @@ const getHome = async (req, res) => {
 }
 
 const getContact = (req, res) => {
-  res.render('pages/contact'); // views/pages/contact.ejs
+  res.render('pages/contact');
 }
 
 const getLogin = (req, res) => {
@@ -75,10 +75,15 @@ const getReview = async (req, res) => {
   const bookId = req.params.bookId;
   const bookById = await getBookById(bookId);
 
-  // Tra ve toan bo sach de hien thi sach goi y
+  // Tra ve binh luan theo params
+  const commentById = await getCommentById(bookId)
+  const fullnameUser = await getUsersByBookId(bookId);
+  // console.log(">>check", fullnameUser);
+
     try {
+    // Tra ve toan bo sach de hien thi sach goi y
     const books = await getAllBooks();
-    res.render('pages/review', { books, bookById }, (err, html) => {
+    res.render('pages/review', { books, bookById, commentById, fullnameUser }, (err, html) => {
       if (err) return res.status(500).send("Lỗi render nội dung");
 
       // Nhúng layout, truyền biến title và content cho layout

@@ -30,6 +30,7 @@ const getUserInformation = async (userId) => {
     throw error;
   }
 }
+
 // lấy thông tin sách theo tìm kiếm
 const getBookBySearch = async (query) => {
   try {
@@ -72,12 +73,12 @@ const getFavorviteBook = async (userId) => {
 // thêm sách yêu thích
 const addFavoriteBook = async (userId, bookId) => {
   try {
-      const [existingFavorite] = await connection.query(
+      const [results, fields] = await connection.query(
         'SELECT * FROM favorites WHERE id_user = ? AND id_book = ?',
         [userId, bookId]
       );
 
-      if (existingFavorite.length > 0) {
+      if (results.length > 0) {
         return { success: false, message: 'Đã tồn tại trong mục yêu thích.' };
       }
 
@@ -93,6 +94,36 @@ const addFavoriteBook = async (userId, bookId) => {
     }
 }
 
+// lấy ra các bình luận cua sach
+const getCommentById = async (bookId) => {
+  try {
+    const [results, fields] = await connection.query(
+      `SELECT * FROM comments WHERE id_book = ? ORDER BY date_created DESC;`,
+      [bookId]
+    );
+    return results;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Lấy thông tin người dùng từ bookId
+const getUsersByBookId = async (bookId) => {
+  try {
+    const [results, fields] = await connection.query(
+      `SELECT DISTINCT u.*
+       FROM users u
+       JOIN comments c ON u.id_user = c.id_user
+       WHERE c.id_book = ?`,
+      [bookId]
+    );
+    return results;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
-    getAllBooks, getBookById, getUserInformation, getBookBySearch, getBookByCategory, getFavorviteBook, addFavoriteBook
+    getAllBooks, getBookById, getUserInformation, getBookBySearch, getBookByCategory, 
+    getFavorviteBook, addFavoriteBook, getCommentById, getUsersByBookId
 }

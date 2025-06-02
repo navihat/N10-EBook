@@ -19,7 +19,11 @@ const {
 
 const { 
     postAddFavorite, 
-} = require('../controllers/addFavoriteController');
+} = require('../controllers/favoriteController');
+
+const { 
+    postFeedback, 
+} = require('../controllers/feedbackController');
 
 
 // Trang chủ
@@ -67,6 +71,12 @@ router.get('/search', (req, res, next) => {
 // Thêm yêu thích
 router.post('/favorite-add', ensureAuthenticated, postAddFavorite);
 
+// Xóa yêu thích
 
+// Post trang phản hồi
+router.post('/feedback', ensureAuthenticated, postFeedback);
+
+// Post bình luận
+// router.post("/comment-add");
 
 module.exports = router

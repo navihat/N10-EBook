@@ -1,178 +1,132 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cookie Notification</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<!-- Overlay -->
+<div id="popup-overlay" class="popup-overlay"></div>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #76aee0;
-      color: #1d3557;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .container {
-      max-width: 600px;
-      padding: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 40px;
-      line-height: 1.4;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      margin-top: 20px;
-      font-size: 18px;
-      color: #1d3557;
-      border: 2px solid #1d3557;
-      background: transparent;
-      text-decoration: none;
-      border-radius: 8px;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: #1d3557;
-      color: #fff;
-    }
-
-    .arrow {
-      font-size: 40px;
-      margin-top: 20px;
-      display: block;
-    }
-
-    .footer-text {
-      margin-top: 30px;
-      font-size: 16px;
-      color: #1d3557;
-    }
-
-    .bg-shape {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: linear-gradient(145deg, #4582c6, #73b0ec);
-      border-radius: 30px;
-      transform: rotate(45deg);
-      opacity: 0.6;
-      z-index: 0;
-    }
-
-    .shape1 {
-      top: -80px;
-      left: -80px;
-    }
-
-    .shape2 {
-      bottom: -80px;
-      right: -80px;
-    }
-
-    /* Cookie Banner */
-    #cookie-banner {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ffffffee;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      z-index: 999;
-      display: none;
-    }
-
-    #cookie-banner p {
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #333;
-    }
-
-    #cookie-banner .cookie-buttons {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .cookie-btn {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .accept {
-      background-color: #2ecc71;
-      color: white;
-    }
-
-    .decline {
-      background-color: #e74c3c;
-      color: white;
-    }
-  </style>
-</head>
-<body>
-  <div class="bg-shape shape1"></div>
-  <div class="bg-shape shape2"></div>
-
-  <div class="container">
-    <h1>HOW TO BUILD AN<br> AUDIENCE AROUND A<br> NICHE TOPIC</h1>
-    <a href="#" class="btn">LEARN MORE</a>
-    <span class="arrow">&#8594;</span>
-    <div class="footer-text">reallygreatesite.com</div>
+<!-- Popup -->
+<div id="popup-ad" class="popup-book">
+  <div class="popup-left">
+    <h3>Sách mới ra mắt!</h3>
+    <h2>CHÚC MỘT NGÀY <br> TỐT LÀNH</h2>
+    <p>Nguyễn Nhật Ánh</p>
+    <p>Câu chuyện về thế giới diệu kỳ nơi các loài vật trò chuyện và sẻ chia những câu chuyện đời thường. Một khúc ca về tình bạn, lòng tốt và những rung cảm đầu đời, mang lại tiếng cười và sự bình yên cho độc giả.</p>
+    <a href="/review/50" class="popup-btn">ĐỌC SÁCH NGAY</a>
   </div>
-
-  <!-- Cookie Banner -->
-  <div id="cookie-banner">
-    <p>Trang web này sử dụng cookie để cải thiện trải nghiệm người dùng. Bạn có chấp nhận không?</p>
-    <div class="cookie-buttons">
-      <button class="cookie-btn accept" onclick="acceptCookies()">Chấp nhận</button>
-      <button class="cookie-btn decline" onclick="declineCookies()">Từ chối</button>
-    </div>
+  <div class="popup-right">
+    <img src="/images/Minhhoa.png" alt="Minh hoạ">
   </div>
+  <span id="close-popup" class="close-btn">&times;</span>
+</div>
 
-  <script>
-    // Kiểm tra trạng thái cookie
-    window.onload = function() {
-      if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookie-banner').style.display = 'block';
-      }
-    };
+<!-- CSS -->
+<style>
+  .popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.3);
+    z-index: 9998;
+    display: none;
+  }
 
-    function acceptCookies() {
-      localStorage.setItem('cookieConsent', 'accepted');
-      document.getElementById('cookie-banner').style.display = 'none';
+  .popup-book {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 9999;
+    display: none;
+    font-family: 'Asap', sans-serif;
+  }
+
+  .popup-left {
+    background-color: #ffffff;
+    color: #005CD6;
+    padding: 30px 25px;
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .popup-left h2 {
+    font-size: 28px;
+    margin-bottom: 14px;
+    margin-top: 14px;
+    line-height: 1.3;
+  }
+
+  .popup-left p {
+    font-size: 16px;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  .popup-btn {
+    background: linear-gradient(to right, #E6F1FA, #A5BEFA);
+    color: #005CD6;
+    padding: 10px 18px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 35px;
+    width: fit-content;
+    transition: background 0.3s;
+  }
+
+  .popup-btn:hover {
+    background: #336fe0;
+    transform: scale(1.05);
+    color: white;
+  }
+
+  .popup-right {
+    flex: 1 1 50%;
+    background: #e6f0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .popup-right img {
+    max-width: 200%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    z-index: 10000;
+  }
+
+  .close-btn:hover {
+    color: #000;
+  }
+</style>
+
+<!-- Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!document.cookie.includes("popupClosed=true")) {
+      setTimeout(() => {
+        document.getElementById("popup-overlay").style.display = "block";
+        document.getElementById("popup-ad").style.display = "flex";
+      }, 1000); // sau 60 giây
+
+      document.getElementById("close-popup").addEventListener("click", function () {
+        document.getElementById("popup-overlay").style.display = "none";
+        document.getElementById("popup-ad").style.display = "none";
+        document.cookie = "popupClosed=true; path=/; max-age=" + (7 * 24 * 60 * 60); // 7 ngày (7 * 24 * 60 * 60) 
+      });
     }
-
-    function declineCookies() {
-      localStorage.setItem('cookieConsent', 'declined');
-      document.getElementById('cookie-banner').style.display = 'none';
-    }
-  </script>
-</body>
-</html>
+  });
+</script>
