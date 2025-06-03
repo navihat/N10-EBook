@@ -36,9 +36,9 @@ const postRemoveComment = async (req, res) => {
   const isAdmin = true;
   const { id_book, comment_id } = req.body;
   const bookById = await getBookById(id_book);
-const commentById = await getCommentById(id_book);
-const fullnameUser = await getUsersByBookId(id_book);
-const books = await getAllBooks();
+  const commentById = await getCommentById(id_book);
+  const fullnameUser = await getUsersByBookId(id_book);
+  const books = await getAllBooks();
 
   try {
     // Xóa bình luận theo id_comment
