@@ -35,7 +35,7 @@ const getRead = async (req, res) => {
 
       // Nhúng layout, truyền biến title và content cho layout
       res.render('layout', {
-        title: `Đọc sách - ${bookById.title}`,
+        title: `Đọc sách`,
         content: html
       })
     });
@@ -79,16 +79,15 @@ const getReview = async (req, res) => {
   const commentById = await getCommentById(bookId)
   const fullnameUser = await getUsersByBookId(bookId);
   // console.log(">>check", fullnameUser);
-
+  const books = await getAllBooks();
     try {
     // Tra ve toan bo sach de hien thi sach goi y
-    const books = await getAllBooks();
     res.render('pages/review', { books, bookById, commentById, fullnameUser }, (err, html) => {
       if (err) return res.status(500).send("Lỗi render nội dung");
 
       // Nhúng layout, truyền biến title và content cho layout
       res.render('layout', {
-        title: `Chi tiết sách - ${bookById.title}`,
+        title: `Chi tiết sách`,
         content: html
       })
     });

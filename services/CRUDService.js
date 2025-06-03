@@ -94,6 +94,30 @@ const addFavoriteBook = async (userId, bookId) => {
     }
 }
 
+// xóa yêu thích
+const removeFavoriteBook = async (userId, bookId) => {
+  try {
+    const [results, fields] = await connection.query(
+      'SELECT * FROM favorites WHERE id_user = ? AND id_book = ?',
+      [userId, bookId]
+    );
+
+    if (results.length === 0) {
+      return { success: false, message: 'Sách không tồn tại trong mục yêu thích.' };
+    }
+
+    // Xóa khỏi bảng favorites
+    await connection.query(
+      'DELETE FROM favorites WHERE id_user = ? AND id_book = ?',
+      [userId, bookId]
+    );
+
+    return { success: true, message: 'Đã xóa khỏi mục yêu thích.' };
+  } catch (error) {
+    throw error;
+  }
+}
+
 // lấy ra các bình luận cua sach
 const getCommentById = async (bookId) => {
   try {
@@ -125,5 +149,5 @@ const getUsersByBookId = async (bookId) => {
 
 module.exports = {
     getAllBooks, getBookById, getUserInformation, getBookBySearch, getBookByCategory, 
-    getFavorviteBook, addFavoriteBook, getCommentById, getUsersByBookId
+    getFavorviteBook, addFavoriteBook, getCommentById, getUsersByBookId, removeFavoriteBook
 }

@@ -18,12 +18,19 @@ const {
 } = require('../controllers/queryController');
 
 const { 
-    postAddFavorite, 
+    postAddFavorite, postRemoveFavorite
 } = require('../controllers/favoriteController');
 
 const { 
     postFeedback, 
 } = require('../controllers/feedbackController');
+
+const { 
+    postComment, 
+} = require('../controllers/addCommentController');
+
+
+
 
 
 // Trang chủ
@@ -72,11 +79,12 @@ router.get('/search', (req, res, next) => {
 router.post('/favorite-add', ensureAuthenticated, postAddFavorite);
 
 // Xóa yêu thích
+router.post('/favorite-remove', postRemoveFavorite);
 
 // Post trang phản hồi
 router.post('/feedback', ensureAuthenticated, postFeedback);
 
-// Post bình luận
-// router.post("/comment-add");
+// Thêm bình luận
+router.post("/comment-add", ensureAuthenticated, postComment);
 
 module.exports = router
