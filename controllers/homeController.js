@@ -80,9 +80,14 @@ const getReview = async (req, res) => {
   const fullnameUser = await getUsersByBookId(bookId);
   // console.log(">>check", fullnameUser);
   const books = await getAllBooks();
+  let isAdmin = false;
+  if (req.session.user && req.session.user.role === 'admin') {
+    isAdmin = true;
+  }
+  
     try {
     // Tra ve toan bo sach de hien thi sach goi y
-    res.render('pages/review', { books, bookById, commentById, fullnameUser }, (err, html) => {
+    res.render('pages/review', { books, bookById, commentById, fullnameUser, isAdmin }, (err, html) => {
       if (err) return res.status(500).send("Lỗi render nội dung");
 
       // Nhúng layout, truyền biến title và content cho layout

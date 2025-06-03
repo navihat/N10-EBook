@@ -26,8 +26,8 @@ const {
 } = require('../controllers/feedbackController');
 
 const { 
-    postComment, 
-} = require('../controllers/addCommentController');
+    postAddComment, postRemoveComment
+} = require('../controllers/commentController');
 
 
 
@@ -85,6 +85,11 @@ router.post('/favorite-remove', postRemoveFavorite);
 router.post('/feedback', ensureAuthenticated, postFeedback);
 
 // Thêm bình luận
-router.post("/comment-add", ensureAuthenticated, postComment);
+router.post("/comment-add", ensureAuthenticated, postAddComment);
+
+// Xóa bình luận nếu là admin
+router.post('/comment-delete', ensureAuthenticated, ensureAdmin, postRemoveComment);
+
+
 
 module.exports = router

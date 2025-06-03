@@ -47,6 +47,15 @@
                 <span><%= new Date(comment.date_created).toLocaleString('vi-VN') %></span>
               </div>
               <p><%= comment.text %></p>
+              <% if (isAdmin) { %>
+                <form action="/comment-delete" method="POST" style="margin-top: 0.5em;">
+                  <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
+                  <input type="hidden" name="comment_id" value="<%= comment.id_comment %>">
+                  <button type="submit" style="color: red; cursor: pointer; border: none; background: none;">
+                    Xóa
+                  </button>
+                </form>
+              <% } %>
             </div>
           <% }) %>
         <% } %>
