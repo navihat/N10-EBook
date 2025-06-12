@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const {
-    getHome, getContact, getLogin, getRead, getFavorvite, getUser, getRegister, getReview,
+    getHome, getContact, getLogin, getRead, getFavorvite, getRegister, getReview,
 } = require('../controllers/homeController');
 
 const { 

@@ -21,7 +21,7 @@ const getBookById = async (bookId) => {
   }
 }
 
-// lay thong tin nguoi dung voi dau vao la session
+// lay thong tin nguoi dung bang userId voi dau vao la session
 const getUserInformation = async (userId) => {
   try {
     const [results, fileds] = await connection.query('SELECT * FROM users WHERE id_user = ?', [userId])
@@ -118,13 +118,17 @@ const removeFavoriteBook = async (userId, bookId) => {
   }
 }
 
-// lấy ra các bình luận cua sach
+// lấy ra các bình luận va thong tin nguoi dung
 const getCommentById = async (bookId) => {
   try {
     const [results, fields] = await connection.query(
-      `SELECT * FROM comments WHERE id_book = ? ORDER BY date_created DESC;`,
+      `SELECT comments.*, users.* FROM comments
+      JOIN users ON comments.id_user = users.id_user
+      WHERE id_book = ?
+      ORDER BY id_comment DESC;`,
       [bookId]
     );
+    console.log(">>>check user and comment:", results);
     return results;
   } catch (error) {
     throw error;
@@ -135,10 +139,10 @@ const getCommentById = async (bookId) => {
 const getUsersByBookId = async (bookId) => {
   try {
     const [results, fields] = await connection.query(
-      `SELECT DISTINCT u.*
-       FROM users u
-       JOIN comments c ON u.id_user = c.id_user
-       WHERE c.id_book = ?`,
+      `SELECT DISTINCT users.*
+       FROM users
+       JOIN comments  ON users.id_user = comments.id_user
+       WHERE comments.id_book = ?`,
       [bookId]
     );
     return results;

@@ -25,46 +25,91 @@
       <p class="author"><strong id="book-author">Tên tác giả: <%= bookById[0].author %></strong></p>
       <p><strong>Thể loại: </strong>
         <a class="tag" id="genre-1" href="/search?category=<%= bookById[0].category %>">
-          <%= bookById[0].category %>
+          <%= bookById[0].category %> 
         </a>
       </p>
       <p id="book-summary"><strong>Tóm tắt: </strong><%= bookById[0].summary %></p>
     </div>
   </section>
 
-  <!-- Comments -->
-  <section class="comments">
-    <h2><em>Bình luận & Đánh giá</em></h2>
-    <div class="comment-box" id="comment-list">
-      <!-- Các comment sẽ được render động tại đây -->
-       <% if (commentById.length === 0) { %>
-          <p>Chưa có bình luận nào.</p>
-        <% } else { %>
-          <% commentById.forEach(comment => { %>
-            <div class="comment-item" style="margin-bottom: 1em;">
-              <div style="display: flex; justify-content: space-between; font-weight: bold;">
-                <span><%= fullnameUser[0].fullname %></span>
-                <span><%= new Date(comment.date_created).toLocaleString('vi-VN') %></span>
-              </div>
-              <p><%= comment.text %></p>
-              <% if (isAdmin) { %>
-                <form action="/comment-delete" method="POST" style="margin-top: 0.5em;">
-                  <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
-                  <input type="hidden" name="comment_id" value="<%= comment.id_comment %>">
-                  <button type="submit" style="color: red; cursor: pointer; border: none; background: none;">
-                    Xóa
-                  </button>
-                </form>
-              <% } %>
+<!-- Comments -->
+<section class="comments">
+  <h2><em>Bình luận & Đánh giá</em></h2>
+  <div class="comment-box" id="comment-list" style="background-color: #eaf4fd; padding: 1em; border-radius: 20px;">
+    <!-- Các comment sẽ được render động tại đây -->
+    <% if (commentAndUserById.length === 0) { %>
+      <p>Chưa có bình luận nào.</p>
+    <% } else { %>
+      <% commentAndUserById.forEach(comment => { %>
+        <div class="comment-item" style="display: flex; align-items: flex-start; margin-bottom: 1em;">
+          <!-- Avatar -->
+          <div class="user-icon-comment">
+            <i class="fa-solid fa-circle-user"></i>
+          </div>
+          <!-- Nội dung comment -->
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+              <span>
+                <%= comment.fullname %>
+                <span class="email" data-email="<%= comment.email %>"></span>
+              </span>
             </div>
-          <% }) %>
+
+            <% if (comment.rating) { %>
+              <div class="rating-stars" style="color: gold; margin: 0.3em 0;">
+                <% for (let i = 1; i <= 5; i++) { %>
+                  <i class="fa-star <%= i <= comment.rating ? 'fas' : 'far' %>"></i>
+                <% } %>
+              </div>
+            <% } %>
+
+            <div style="background-color: white; padding: 0.5em 1em; border-radius: 10px; display: inline-block; max-width: 80%;">
+              <%= comment.text %>
+            </div>
+            
+            <% if (isAdmin) { %>
+              <form action="/comment-delete" method="POST" style="margin-top: 0.3em;">
+                <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
+                <input type="hidden" name="comment_id" value="<%= comment.id_comment %>">
+                <button type="submit" style="color: gray; cursor: pointer; border: none; background: none;">Xoá</button>
+              </form>
+            <% } %>
+          </div>
+          <!-- Ngày -->
+          <div style="margin-left: auto; padding-left: 1em; font-weight: bold; white-space: nowrap;">
+            <%= new Date(comment.date_created).toLocaleDateString('vi-VN') %>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+  <!-- Form bình luận -->
+  <form action="/comment-add" method="POST" style="margin-top: 1em;">
+    <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
+    
+    <div style="background-color: #eaf4fd; padding: 1em; border-radius: 20px; display: flex; align-items: center; gap: 1em;">
+      <!-- Stars -->
+      <div class="rating-stars" id="ratingStarsContainer">
+        <% for (let i = 1; i <= 5; i++) { %>
+          <label class="star-label">
+            <input type="radio" name="rating" value="<%= i %>" class="star-radio" required style="display: none;" />
+             <i class="fa-star far star-icon"></i>
+          </label>
         <% } %>
+      </div>
+
+      <!-- Input -->
+      <input type="text" name="comment_text" class="input-comment" placeholder="Bình luận ngay..." id="new-comment" required style="flex: 1; padding: 0.5em 1em; border-radius: 10px; border: none;">
+
+      <!-- Submit -->
+      <button type="submit" style="background: linear-gradient(to right, #90c4ff, #adcfff); border: none; border-radius: 15px; padding: 0.5em 1.2em; font-weight: bold; cursor: pointer;">
+        Gửi
+      </button>
     </div>
-    <form action="/comment-add" method="POST">
-      <input type="hidden" name="id_book" value="<%= bookById[0].id_book %>">
-      <input type="text" name="comment_text" class="input-comment" placeholder="Bình luận ngay" id="new-comment" required>
-    </form>
-  </section>
+  </form>
+</section>
+
 
   <!-- Suggestions -->
   <section class="suggestions">
@@ -96,4 +141,96 @@
       window.location.href = "/";
     }
   }
+
+  document.querySelectorAll('.email').forEach(el => {
+    const email = el.dataset.email;
+    const [local, domain] = email.split('@');
+    const visible = local.slice(-3);
+    const masked = '*'.repeat(local.length - visible.length);
+    el.textContent = '(' + masked + visible + '@' + domain + ')'; 
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+      const ratingStarsContainer = document.getElementById('ratingStarsContainer');
+
+      if (ratingStarsContainer) {
+          const allStarLabels = ratingStarsContainer.querySelectorAll('.star-label');
+
+          // Hàm để cập nhật trạng thái icon và màu sắc của tất cả các sao
+          function updateStarDisplay(selectedRating = 0) {
+              allStarLabels.forEach((label, index) => {
+                  const starIcon = label.querySelector('.star-icon');
+                  const radio = label.querySelector('.star-radio');
+
+                  // Xóa tất cả các class liên quan đến loại icon và trạng thái màu trước
+                  starIcon.classList.remove('fas', 'far', 'selected', 'hovered');
+
+                  if (index < selectedRating) {
+                      // Sao này đã được chọn (hoặc trước sao được chọn)
+                      starIcon.classList.add('fas', 'selected'); // Icon đặc, màu vàng
+                      radio.checked = true; // Đảm bảo radio button được chọn
+                  } else {
+                      // Sao này chưa được chọn
+                      starIcon.classList.add('far'); // Icon rỗng, màu mặc định (xám)
+                      radio.checked = false; // Đảm bảo radio button không được chọn
+                  }
+              });
+          }
+
+          // --- Xử lý sự kiện Click (Chọn sao) ---
+          ratingStarsContainer.addEventListener('click', function(event) {
+              const clickedStarIcon = event.target.closest('.star-icon');
+
+              if (clickedStarIcon) {
+                  const clickedLabel = clickedStarIcon.closest('.star-label');
+                  const clickedRadio = clickedLabel.querySelector('.star-radio');
+
+                  if (clickedRadio) {
+                      const newRating = parseInt(clickedRadio.value);
+                      updateStarDisplay(newRating); // Cập nhật hiển thị dựa trên sao mới được chọn
+                  }
+              }
+          });
+
+          // --- Xử lý sự kiện Hover (Xem trước) ---
+          ratingStarsContainer.addEventListener('mouseover', function(event) {
+              const hoveredStarIcon = event.target.closest('.star-icon');
+              if (hoveredStarIcon) {
+                  const hoveredLabel = hoveredStarIcon.closest('.star-label');
+                  const hoveredIndex = Array.from(allStarLabels).indexOf(hoveredLabel);
+
+                  allStarLabels.forEach((label, index) => {
+                      const starIcon = label.querySelector('.star-icon');
+                      // Nếu sao hiện tại chưa được chọn (không có class 'selected')
+                      // và chỉ số của nó nhỏ hơn hoặc bằng chỉ số sao đang hover
+                      if (!starIcon.classList.contains('selected') && index <= hoveredIndex) {
+                          starIcon.classList.add('hovered'); // Thêm class hovered (màu cam)
+                      } else if (!starIcon.classList.contains('selected')) {
+                          // Nếu không hover và không selected, đảm bảo nó là màu mặc định
+                          starIcon.classList.remove('hovered');
+                      }
+                  });
+              }
+          });
+
+          // --- Xử lý khi chuột rời khỏi khu vực sao ---
+          ratingStarsContainer.addEventListener('mouseout', function() {
+              allStarLabels.forEach((label) => {
+                  const starIcon = label.querySelector('.star-icon');
+                  starIcon.classList.remove('hovered'); // Xóa class hovered
+              });
+          });
+
+          // --- Khởi tạo trạng thái ban đầu khi tải trang ---
+          // Tìm radio button đã được chọn sẵn (nếu có từ backend)
+          const initialSelectedRadio = ratingStarsContainer.querySelector('.star-radio:checked');
+          if (initialSelectedRadio) {
+              const initialRating = parseInt(initialSelectedRadio.value);
+              updateStarDisplay(initialRating); // Cập nhật hiển thị dựa trên giá trị ban đầu
+          } else {
+              // Nếu không có sao nào được chọn ban đầu, đảm bảo tất cả đều là rỗng
+              updateStarDisplay(0);
+          }
+      }
+  });
 </script>

@@ -260,6 +260,14 @@
       transition: transform 0.2s;
       display: inline-block;
     }
+
+    .user-icon-comment {
+      font-size: 15px;
+      color: #005cd6;
+      cursor: pointer;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
  
     .user-icon:hover {
       transform: scale(1.35);
@@ -902,4 +910,18 @@
 
     .remove-button:hover {
       background: rgb(164, 164, 164);
+    }
+
+    /* Màu mặc định của sao (khi chưa được chọn) */
+    .rating-stars .star-icon {
+        color: #ccc; /* Màu xám nhạt */
+        cursor: pointer;
+        font-size: 1.5em; /* Tăng kích thước sao cho dễ nhìn hơn, điều chỉnh theo ý muốn */
+        margin: 0 2px; /* Khoảng cách giữa các sao */
+        transition: color 0.2s ease; /* Hiệu ứng chuyển màu mượt mà */
+    }
+
+    /* Màu của sao khi được chọn hoặc hover (sẽ được JS quản lý) */
+    .rating-stars .star-icon.selected {
+        color: gold; /* Màu vàng đậm khi được chọn */
     }
