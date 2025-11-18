@@ -7,26 +7,29 @@
     <% bookByIdUser.forEach(book => { %>
     <div class="item book-item">
       <form class="remove-form" action="/favorite-remove" method="POST">
-        <input type="hidden" name="id_book" value="<%= book.id_book %>">
+        <input type="hidden" name="id_book" value="<%= book.id_book %>" />
         <button type="submit" class="remove-button">&times;</button>
       </form>
       <a href="/review/<%= book.id_book %>" class="item">
-        <img src="/images/<%= book.id_book %>.jpg" alt="<%= book.title %>" class="book-image"/>
+        <img
+          src="/images/<%= book.id_book %>.jpg"
+          alt="<%= book.title %>"
+          class="book-image"
+        />
         <div class="book-title"><%= book.title %></div>
       </a>
-      </div>
+    </div>
     <% }); %>
   </div>
 </section>
-
-
+<!-- trang yêu thích -->
 <script>
   function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    const toggleBtn = document.querySelector('.toggle-sidebar i');
-    sidebar.classList.toggle('collapsed');
-    toggleBtn.classList.toggle('fa-angle-right');
-    toggleBtn.classList.toggle('fa-angle-left');
+    const sidebar = document.querySelector(".sidebar");
+    const toggleBtn = document.querySelector(".toggle-sidebar i");
+    sidebar.classList.toggle("collapsed");
+    toggleBtn.classList.toggle("fa-angle-right");
+    toggleBtn.classList.toggle("fa-angle-left");
   }
 
   function goBack() {
